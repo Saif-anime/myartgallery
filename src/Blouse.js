@@ -154,62 +154,62 @@ function Blouse() {
 
 
 
-    const UpdatehandleSubmit = async (id) => {
-        // Perform update logic using bannerData
-        try {
-            const formData = new FormData();
-            formData.append('title', bannerData.title);
-            formData.append('bannerLink', bannerData.vanityUrl);
-            formData.append('file', bannerData.file);
+    // const UpdatehandleSubmit = async (id) => {
+    //     // Perform update logic using bannerData
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('title', bannerData.title);
+    //         formData.append('bannerLink', bannerData.vanityUrl);
+    //         formData.append('file', bannerData.file);
 
-            const response = await fetch(`${process.env.REACT_APP_API_FETCH_URL}/Admin/blouse/${id}`, {
-                method: 'PUT',
-                body: formData
-            });
+    //         const response = await fetch(`${process.env.REACT_APP_API_FETCH_URL}/Admin/blouse/${id}`, {
+    //             method: 'PUT',
+    //             body: formData
+    //         });
 
-            if (response.ok) {
-                console.log('blouse type updated successfully!');
-                // Show success toast notification
-                toast.success('blouse type update successfully!');
-            } else {
-                // Show success toast notification
-                toast.success('failed to update blouse type successfully!');
-            }
-        } catch (error) {
-            console.error('Error updating blouse type:', error);
-        }
-    }
-
-
-    // // Function to handle input changes
-    const UpdatehandleInputChange = (e) => {
-        const { name, value } = e.target;
-        setBannerData({
-            ...bannerData,
-            [name]: value
-        });
-    };
-
-    //   // Function to handle file upload
-    const UpdatehandleFileChange = (e) => {
-        const file = e.target.files[0];
-        setBannerData({
-            ...bannerData,
-            file: file
-        });
-    };
+    //         if (response.ok) {
+    //             console.log('blouse type updated successfully!');
+    //             // Show success toast notification
+    //             toast.success('blouse type update successfully!');
+    //         } else {
+    //             // Show success toast notification
+    //             toast.success('failed to update blouse type successfully!');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error updating blouse type:', error);
+    //     }
+    // }
 
 
+    // // // Function to handle input changes
+    // const UpdatehandleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setBannerData({
+    //         ...bannerData,
+    //         [name]: value
+    //     });
+    // };
+
+    // //   // Function to handle file upload
+    // const UpdatehandleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setBannerData({
+    //         ...bannerData,
+    //         file: file
+    //     });
+    // };
 
 
 
-    const BannerSingleData = (id) => {
-        try {
-            fetchData(id);
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
+
+    // const BannerSingleData = (id) => {
+    //     try {
+    //         fetchData(id);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
 
 

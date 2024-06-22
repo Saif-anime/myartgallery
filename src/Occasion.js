@@ -155,50 +155,50 @@ function Occasion() {
 
 
 
-    const UpdatehandleSubmit = async (id) => {
-        // Perform update logic using bannerData
-        try {
-            const formData = new FormData();
-            formData.append('title', bannerData.title);
-            formData.append('bannerLink', bannerData.vanityUrl);
-            formData.append('file', bannerData.file);
+    // const UpdatehandleSubmit = async (id) => {
+    //     // Perform update logic using bannerData
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('title', bannerData.title);
+    //         formData.append('bannerLink', bannerData.vanityUrl);
+    //         formData.append('file', bannerData.file);
 
-            const response = await fetch(`${process.env.REACT_APP_API_FETCH_URL}/Admin/Occasion/${id}`, {
-                method: 'PUT',
-                body: formData
-            });
+    //         const response = await fetch(`${process.env.REACT_APP_API_FETCH_URL}/Admin/Occasion/${id}`, {
+    //             method: 'PUT',
+    //             body: formData
+    //         });
 
-            if (response.ok) {
-                console.log('Banner updated successfully!');
-                // Show success toast notification
-                toast.success('Fabric update successfully!');
-            } else {
-                // Show success toast notification
-                toast.success('failed to update Fabric successfully!');
-            }
-        } catch (error) {
-            console.error('Error updating Fabric:', error);
-        }
-    }
+    //         if (response.ok) {
+    //             console.log('Banner updated successfully!');
+    //             // Show success toast notification
+    //             toast.success('Fabric update successfully!');
+    //         } else {
+    //             // Show success toast notification
+    //             toast.success('failed to update Fabric successfully!');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error updating Fabric:', error);
+    //     }
+    // }
 
 
-    // // Function to handle input changes
-    const UpdatehandleInputChange = (e) => {
-        const { name, value } = e.target;
-        setBannerData({
-            ...bannerData,
-            [name]: value
-        });
-    };
+    // // // Function to handle input changes
+    // const UpdatehandleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setBannerData({
+    //         ...bannerData,
+    //         [name]: value
+    //     });
+    // };
 
-    //   // Function to handle file upload
-    const UpdatehandleFileChange = (e) => {
-        const file = e.target.files[0];
-        setBannerData({
-            ...bannerData,
-            file: file
-        });
-    };
+    // //   // Function to handle file upload
+    // const UpdatehandleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setBannerData({
+    //         ...bannerData,
+    //         file: file
+    //     });
+    // };
 
 
 
