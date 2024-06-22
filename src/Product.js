@@ -340,13 +340,13 @@ function Product() {
 
 
 
-    // const BannerSingleData = (id) => {
-    //     try {
-    //         fetchData(id);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const BannerSingleData = (id) => {
+        try {
+            fetchData(id);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
 
