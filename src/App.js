@@ -36,15 +36,15 @@ function App() {
                   <div class="card info-card sales-card">
 
                     <div class="filter">
-                      <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item">Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item">Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -69,15 +69,15 @@ function App() {
                   <div class="card info-card revenue-card">
 
                     <div class="filter">
-                      <a class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item" >Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item" >Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -103,15 +103,15 @@ function App() {
                   <div class="card info-card customers-card">
 
                     <div class="filter">
-                      <a class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item" >Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item" >Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -137,15 +137,15 @@ function App() {
                   <div class="card">
 
                     <div class="filter">
-                      <a class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item" >Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item" >Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -157,15 +157,15 @@ function App() {
                   <div class="card recent-sales overflow-auto">
 
                     <div class="filter">
-                      <a class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item" >Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item" >Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -184,37 +184,37 @@ function App() {
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row"><a >#2457</a></th>
+                            <th scope="row"><Link >#2457</Link></th>
                             <td>Brandon Jacob</td>
-                            <td><a class="text-primary">At praesentium minu</a></td>
+                            <td><Link class="text-primary">At praesentium minu</Link></td>
                             <td>$64</td>
                             <td><span class="badge bg-success">Approved</span></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a >#2147</a></th>
+                            <th scope="row"><Link >#2147</Link></th>
                             <td>Bridie Kessler</td>
-                            <td><a  class="text-primary">Blanditiis dolor omnis similique</a></td>
+                            <td><Link  class="text-primary">Blanditiis dolor omnis similique</Link></td>
                             <td>$47</td>
                             <td><span class="badge bg-warning">Pending</span></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a >#2049</a></th>
+                            <th scope="row"><Link >#2049</Link></th>
                             <td>Ashleigh Langosh</td>
-                            <td><a class="text-primary">At recusandae consectetur</a></td>
+                            <td><Link class="text-primary">At recusandae consectetur</Link></td>
                             <td>$147</td>
                             <td><span class="badge bg-success">Approved</span></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a >#2644</a></th>
+                            <th scope="row"><Link >#2644</Link></th>
                             <td>Angus Grady</td>
-                            <td><a  class="text-primar">Ut voluptatem id earum et</a></td>
+                            <td><Link  class="text-primar">Ut voluptatem id earum et</Link></td>
                             <td>$67</td>
                             <td><span class="badge bg-danger">Rejected</span></td>
                           </tr>
                           <tr>
-                            <th scope="row"><a >#2644</a></th>
+                            <th scope="row"><Link >#2644</Link></th>
                             <td>Raheem Lehner</td>
-                            <td><a  class="text-primary">Sunt similique distinctio</a></td>
+                            <td><Link  class="text-primary">Sunt similique distinctio</Link></td>
                             <td>$165</td>
                             <td><span class="badge bg-success">Approved</span></td>
                           </tr>
@@ -229,15 +229,15 @@ function App() {
                   <div class="card top-selling overflow-auto">
 
                     <div class="filter">
-                      <a class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <Link class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></Link>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
                           <h6>Filter</h6>
                         </li>
 
-                        <li><a class="dropdown-item" >Today</a></li>
-                        <li><a class="dropdown-item" >This Month</a></li>
-                        <li><a class="dropdown-item" >This Year</a></li>
+                        <li><Link class="dropdown-item" >Today</Link></li>
+                        <li><Link class="dropdown-item" >This Month</Link></li>
+                        <li><Link class="dropdown-item" >This Year</Link></li>
                       </ul>
                     </div>
 
@@ -256,36 +256,36 @@ function App() {
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row"><a ><img src="assets/img/product-1.jpg" alt="" /></a></th>
-                            <td><a  class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                            <th scope="row"><Link ><img src="assets/img/product-1.jpg" alt="" /></Link></th>
+                            <td><Link  class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</Link></td>
                             <td>$64</td>
                             <td class="fw-bold">124</td>
                             <td>$5,828</td>
                           </tr>
                           <tr>
-                            <th scope="row"><a ><img src="assets/img/product-2.jpg" alt="" /></a></th>
-                            <td><a  class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
+                            <th scope="row"><Link ><img src="assets/img/product-2.jpg" alt="" /></Link></th>
+                            <td><Link  class="text-primary fw-bold">Exercitationem similique doloremque</Link></td>
                             <td>$46</td>
                             <td class="fw-bold">98</td>
                             <td>$4,508</td>
                           </tr>
                           <tr>
-                            <th scope="row"><a ><img src="assets/img/product-3.jpg" alt="" /></a></th>
-                            <td><a  class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
+                            <th scope="row"><Link ><img src="assets/img/product-3.jpg" alt="" /></Link></th>
+                            <td><Link  class="text-primary fw-bold">Doloribus nisi exercitationem</Link></td>
                             <td>$59</td>
                             <td class="fw-bold">74</td>
                             <td>$4,366</td>
                           </tr>
                           <tr>
-                            <th scope="row"><a ><img src="assets/img/product-4.jpg" alt="" /></a></th>
-                            <td><a  class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
+                            <th scope="row"><Link ><img src="assets/img/product-4.jpg" alt="" /></Link></th>
+                            <td><Link  class="text-primary fw-bold">Officiis quaerat sint rerum error</Link></td>
                             <td>$32</td>
                             <td class="fw-bold">63</td>
                             <td>$2,016</td>
                           </tr>
                           <tr>
-                            <th scope="row"><a ><img src="assets/img/product-5.jpg" alt="" /></a></th>
-                            <td><a  class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
+                            <th scope="row"><Link ><img src="assets/img/product-5.jpg" alt="" /></Link></th>
+                            <td><Link  class="text-primary fw-bold">Sit unde debitis delectus repellendus</Link></td>
                             <td>$79</td>
                             <td class="fw-bold">41</td>
                             <td>$3,239</td>
