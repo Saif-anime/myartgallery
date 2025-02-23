@@ -1,0 +1,213 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
+use App\Models\Order;
+use App\Models\Order_Ir_Item;
+use App\Models\Product;
+
+
+class PaymentController extends Controller
+{
+    //
+     public function processPayment(Request $request)
+    {
+        
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'mobile' => 'required|string',
+            'amount' => 'required|string',
+            'lname' => 'required|string',
+            'country' => 'required|string',
+            'address' => 'required|string',
+            'pincode' => 'required|string',
+            'items' => 'required|array', // Expecting an array of items
+            'items.*.product_id' => 'required|exists:_product,id', // Validate product IDs
+            'items.*.qty' => 'required|integer|min:1', // Validate quantity
+          
+        ]);
+        
+
+        
+        
+       
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $mobile = $request->input('mobile');
+        $amount = $request->input('amount');
+        $lname = $request->input('lname');
+        $country = $request->input('country');
+        $address = $request->input('address');
+        
+        $pincode = $request->input('pincode');
+        $items = $request->input('items'); // Get the items from the request
+        
+        
+
+        Session::put('name', $name);
+        Session::put('email', $email);
+        Session::put('mobile', $mobile);
+        
+
+        $merchantId = env('MERCHANTIDUAT');
+        $saltKey = env('SALTKEYUAT');
+        $saltIndex = env('SALTINDEX');
+        
+   
+        // dd(class_exists('App\Models\Order_Ir_Item'));
+        // die();
+    
+
+        $payload = [
+            'merchantId' => $merchantId,
+            'merchantTransactionId' => "MT-" . $this->getTransactionID(), // test transactionID
+            'merchantUserId' => "M-" . uniqid(),
+            'amount' => $amount * 100, // phone pe works on paise
+            'redirectUrl' => env('BASE_URL') . env('REDIRECTURL'),
+            'redirectMode' => "POST",
+            'callbackUrl' => env('BASE_URL') . env('REDIRECTURL'),
+            'mobileNumber' => $mobile,
+            'paymentInstrument' => [
+                'type' => 'PAY_PAGE',
+            ],
+        ];
+
+      
+     
+
+        $payloadBase64 = base64_encode(json_encode($payload));
+        $payloadData = $payloadBase64 . "/pg/v1/pay" . $saltKey;
+        $sha256 = hash("sha256", $payloadData);
+        $checksum = $sha256 . '###' . $saltIndex;
+ 
+
+        $requestPayload = json_encode(['request' => $payloadBase64]);
+        $url = (env('API_STATUS') == "LIVE") ? env('LIVEURLPAY') : env('UATURLPAY');
+        
+
+
+    $curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => $requestPayload, // JSON payload
+    CURLOPT_HTTPHEADER => [
+        "Content-Type: application/json",
+        "X-VERIFY: " . $checksum,
+        "Accept: application/json",
+        
+       
+    ],
+]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+
+    if ($err) {
+        return response()->json(['error' => 'cURL Error: ' . $err], 500);
+    } else {
+        $res = json_decode($response);
+        
+
+        // Debugging: log response
+        \Log::info('Payment Response:', (array)$res);
+
+        if (isset($res->success) && $res->success == '1') {
+            $payUrl = $res->data->instrumentResponse->redirectInfo->url;
+            
+             $order = Order::create([
+            'user_id' => auth()->id(), // Assuming the user is authenticated
+            'status' => 'pending',
+            'grand_total' => $amount,
+            'payment_method' => 'phonepay', // Set based on your payment method
+            'shipping_name' => $name, // Use customer name for shipping
+            'shipping_address' => $address, // Replace with actual address
+            'shipping_contact' => $mobile,
+            'customer_name' => $name,
+            'customer_email' => $email,
+            'customer_mobile' => $mobile,
+        ]);
+        
+        
+        
+                // Now create the order items
+        foreach ($items as $item) {
+            $product = Product::find($item['product_id']); // Retrieve the product
+
+            Order_Ir_Item::create([
+                'order_id' => $order->id,
+                'product_id' => $item['product_id'],
+                'seller_id' => $product->seller_id,
+                'qty' => $item['qty'],
+                'price' => $product->sale_price, // Assuming you have a price field in Product
+                'total' => $product->sale_price * $item['qty'], // Calculate total for this item
+            ]);
+        }
+
+            return redirect()->away($payUrl);
+        }
+
+        return response()->json(['error' => 'Payment failed.'], 400);
+    }
+    }
+
+    private function getTransactionID()
+    {
+        // Implement your logic to generate a transaction ID.
+        return rand(1111111111,99999999999);
+    }
+    
+
+
+
+    public function handlePaymentResponse(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'merchantTransactionId' => 'required|string',
+            'status' => 'required|string',
+            'amount' => 'required|numeric',
+            // Add any other parameters returned by the payment gateway as needed
+        ]);
+
+        // Get relevant data from the request
+        $transactionId = $request->input('merchantTransactionId');
+        $status = $request->input('status');
+        $amount = $request->input('amount');
+
+        // Process the payment response
+        if ($status === 'SUCCESS') {
+            // Handle successful payment (e.g., update database, send confirmation)
+            // You may want to save the transaction details in your database
+
+            // Clear session data if needed
+            Session::forget(['name', 'email', 'mobile']);
+Cart::where('user_id', auth()->id())->delete();  // Deletes all cart items for the authenticated user
+
+            return view('success', [
+                'transactionId' => $transactionId,
+                'amount' => $amount,
+                'message' => 'Payment was successful!',
+            ]);
+        } else {
+            // Handle failed payment
+            return view('failure', [
+                'transactionId' => $transactionId,
+                'amount' => $amount,
+                'message' => 'Payment failed. Please try again.',
+            ]);
+        }
+    }
+
+}
